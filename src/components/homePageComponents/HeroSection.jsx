@@ -1,4 +1,5 @@
-import React, { useRef,useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './HeroSection.css';
 
 const HeroSection = () => {
@@ -13,9 +14,9 @@ const HeroSection = () => {
             ref.current.showPicker();
         }
     };
-  const showdetails = () => {
-    console.log(startDates, endDates,destination);
-  }
+    const showdetails = () => {
+        console.log(startDates, endDates, destination);
+    }
 
     return (
         <div className="hero-container">
@@ -54,10 +55,10 @@ const HeroSection = () => {
                             </svg>
                         </span>
                         <input type="text"
-                         placeholder="Search destinations"
-                         onChange={e => setDestination(e.target.value)}
-                         value={destination}
-                         />
+                            placeholder="Search destinations"
+                            onChange={e => setDestination(e.target.value)}
+                            value={destination}
+                        />
                     </div>
 
                     {/* Date Inputs - Middle */}
@@ -77,9 +78,9 @@ const HeroSection = () => {
                                 className="date-input"
                                 placeholder="Start Date"
                                 onChange={e => setStartDates(e.target.value)}
-                             />
+                            />
                             {startDates ?
-                            <span className="date-placeholder">{startDates}</span> :  <span className="date-placeholder">Start Date</span>
+                                <span className="date-placeholder">{startDates}</span> : <span className="date-placeholder">Start Date</span>
                             }                          </div>
 
                         <div className="search-input-group date-group" onClick={() => handleDateClick(endDateRef)}>
@@ -97,10 +98,10 @@ const HeroSection = () => {
                                 className="date-input"
                                 placeholder="End Date"
                                 onChange={e => setEndDates(e.target.value)}
-                             />
+                            />
                             {endDates ?
-                            <span className="date-placeholder">{endDates}</span> :  <span className="date-placeholder">End Date</span>
-                            }   
+                                <span className="date-placeholder">{endDates}</span> : <span className="date-placeholder">End Date</span>
+                            }
                         </div>
                     </div>
 
@@ -121,7 +122,9 @@ const HeroSection = () => {
             </div>
 
             <div className="cta-container">
-                <button className="discover-btn">Discover experiences</button>
+                <Link to="/dyna">
+                    <button className="discover-btn">Discover experiences</button>
+                </Link>
             </div>
 
         </div>

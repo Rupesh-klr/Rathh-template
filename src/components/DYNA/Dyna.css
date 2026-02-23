@@ -1,0 +1,607 @@
+/* ============================================
+   DYNA - Discover Your Next Adventure Styles
+   ============================================ */
+
+/* Page Container */
+.dyna-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* =====================
+   Component 1: Heading
+   ===================== */
+.dyna-heading-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.dyna-heading-left {
+    flex-shrink: 0;
+}
+
+.dyna-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+}
+
+.dyna-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+}
+
+.dyna-heading-right {
+    flex: 1;
+    min-width: 280px;
+}
+
+.dyna-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.dyna-search-input {
+    padding: 9px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    outline: none;
+    min-width: 170px;
+    flex: 1;
+    max-width: 220px;
+    transition: border-color 0.2s;
+    background: #fff;
+}
+
+.dyna-search-input:focus {
+    border-color: #E2211C;
+    box-shadow: 0 0 0 2px rgba(226, 33, 28, 0.08);
+}
+
+.dyna-date-input {
+    padding: 9px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    outline: none;
+    min-width: 120px;
+    background: #fff;
+    transition: border-color 0.2s;
+    color: #555;
+}
+
+.dyna-date-input:focus {
+    border-color: #E2211C;
+    box-shadow: 0 0 0 2px rgba(226, 33, 28, 0.08);
+}
+
+.dyna-search-btn {
+    padding: 9px 24px;
+    background-color: #E2211C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.dyna-search-btn:hover {
+    background-color: #c91b17;
+    transform: translateY(-1px);
+}
+
+.dyna-search-btn:active {
+    transform: translateY(0);
+}
+
+/* ======================
+   Main Layout (sidebar + cards)
+   ====================== */
+.dyna-main-layout {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+.dyna-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dyna-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================
+   Component 2: Destination
+   ========================== */
+.dyna-destination-wrapper {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+}
+
+.dyna-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.dyna-section-icon {
+    color: #555;
+    font-size: 1rem;
+}
+
+.dyna-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.dyna-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 4px;
+}
+
+.dyna-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #444;
+    transition: color 0.15s;
+}
+
+.dyna-checkbox-item:hover {
+    color: #1a1a1a;
+}
+
+.dyna-checkbox-item input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+    accent-color: #E2211C;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.dyna-destination-right {
+    margin-top: 16px;
+}
+
+.dyna-map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+
+.dyna-map-placeholder {
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.dyna-map-placeholder svg {
+    width: 100%;
+    height: auto;
+}
+
+/* =======================
+   Component 3: Filters
+   ======================= */
+.dyna-filters-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dyna-filter-section {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+}
+
+.dyna-price-range {
+    padding-left: 4px;
+}
+
+.dyna-range-slider {
+    width: 100%;
+    height: 4px;
+    accent-color: #E2211C;
+    cursor: pointer;
+    margin-bottom: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e5e7eb;
+    border-radius: 2px;
+    outline: none;
+}
+
+.dyna-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #E2211C;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dyna-range-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #E2211C;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dyna-price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Filter Buttons */
+.dyna-filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.dyna-clear-btn {
+    flex: 1;
+    padding: 10px 16px;
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dyna-clear-btn:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.dyna-apply-btn {
+    flex: 1;
+    padding: 10px 16px;
+    background-color: #E2211C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dyna-apply-btn:hover {
+    background-color: #c91b17;
+    transform: translateY(-1px);
+}
+
+/* =======================
+   Component 4: Cards
+   ======================= */
+.dyna-cards-wrapper {
+    width: 100%;
+}
+
+.dyna-cards-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dyna-results-count {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.dyna-sort-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.dyna-sort-select {
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+    background: #fff;
+}
+
+.dyna-sort-select:focus {
+    border-color: #E2211C;
+}
+
+/* Cards Grid */
+.dyna-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Individual Card */
+.dyna-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.dyna-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.dyna-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+}
+
+.dyna-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dyna-card:hover .dyna-card-image {
+    transform: scale(1.05);
+}
+
+.dyna-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+}
+
+.dyna-card-name {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dyna-card-info {
+    padding: 12px;
+}
+
+.dyna-card-dates {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+}
+
+.dyna-card-price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 10px 0;
+}
+
+.dyna-view-details-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #E2211C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dyna-view-details-btn:hover {
+    background-color: #c91b17;
+}
+
+/* =====================
+   RESPONSIVE DESIGN
+   ===================== */
+
+/* Tablets & Small Desktops */
+@media (max-width: 1200px) {
+    .dyna-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .dyna-page {
+        padding: 20px 20px;
+    }
+
+    .dyna-main-layout {
+        gap: 20px;
+    }
+
+    .dyna-sidebar {
+        width: 230px;
+    }
+
+    .dyna-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets Portrait */
+@media (max-width: 768px) {
+    .dyna-heading-wrapper {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .dyna-heading-right {
+        width: 100%;
+    }
+
+    .dyna-search-bar {
+        justify-content: flex-start;
+    }
+
+    .dyna-search-input {
+        max-width: 100%;
+    }
+
+    .dyna-main-layout {
+        flex-direction: column;
+    }
+
+    .dyna-sidebar {
+        width: 100%;
+    }
+
+    .dyna-destination-wrapper {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .dyna-destination-left {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .dyna-destination-right {
+        flex: 1;
+        min-width: 200px;
+        margin-top: 0;
+    }
+
+    .dyna-filters-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .dyna-filter-section {
+        border-bottom: none;
+        border-right: 1px solid #e5e7eb;
+        padding-bottom: 0;
+        padding-right: 16px;
+        margin-bottom: 0;
+    }
+
+    .dyna-filter-section:last-of-type {
+        border-right: none;
+    }
+
+    .dyna-filter-buttons {
+        grid-column: 1 / -1;
+    }
+
+    .dyna-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 640px) {
+    .dyna-page {
+        padding: 16px 12px;
+    }
+
+    .dyna-title {
+        font-size: 1.4rem;
+    }
+
+    .dyna-search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dyna-search-input,
+    .dyna-date-input {
+        max-width: 100%;
+        min-width: auto;
+    }
+
+    .dyna-filters-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .dyna-filter-section {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-right: 0;
+        padding-bottom: 16px;
+        margin-bottom: 0;
+    }
+
+    .dyna-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .dyna-card-image-wrapper {
+        height: 130px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 420px) {
+    .dyna-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dyna-destination-wrapper {
+        flex-direction: column;
+    }
+}
