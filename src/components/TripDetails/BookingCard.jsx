@@ -12,6 +12,28 @@ const BookingCard = ({ price, tripDates, tripName }) => {
 
     const dates = tripDates && tripDates.length > 0 ? tripDates : defaultDates;
     const [selectedDate, setSelectedDate] = useState(0);
+    const [ripples, setRipples] = useState([]);
+
+    const handleRipple = (e) => {
+        const button = e.currentTarget;
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        const newRipple = {
+            id: Date.now(),
+            x,
+            y,
+            size
+        };
+
+        setRipples(prev => [...prev, newRipple]);
+
+        setTimeout(() => {
+            setRipples(prev => prev.filter(r => r.id !== newRipple.id));
+        }, 600);
+    };
 
     const pills = ['Small Group', 'Expert Guide', 'Local Experiences'];
 
@@ -37,12 +59,24 @@ const BookingCard = ({ price, tripDates, tripName }) => {
                 ))}
             </div>
 
-           
+
 
             {/* ── 4. Book Now Button ── */}
-            <button className="booking-btn">
+            <button className="booking-btn" onClick={handleRipple}>
                 <span className="booking-btn-text">Book Now</span>
                 <span className="booking-btn-arrow">→</span>
+                {ripples.map(ripple => (
+                    <span
+                        key={ripple.id}
+                        className="ripple"
+                        style={{
+                            left: ripple.x,
+                            top: ripple.y,
+                            width: ripple.size,
+                            height: ripple.size
+                        }}
+                    />
+                ))}
             </button>
             {/* ── 5. Feature Pills ── */}
             <div className="booking-pills">
