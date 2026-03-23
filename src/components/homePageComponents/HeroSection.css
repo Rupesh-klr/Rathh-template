@@ -239,25 +239,37 @@
 
 /* ── Mobile only: hero text ── */
 @media (max-width: 768px) {
+    .hero-video-wrapper {
+        border-radius: 12px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        height: 260px;
+    }
+
     .hero-content {
         width: 88%;
         max-width: 480px;
         padding: 0 12px;
     }
 
+    .hero-desktop-br {
+        display: none;
+    }
+
     .hero-content h1 {
-        font-size: clamp(1.3rem, 5.5vw, 1.9rem);
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
         line-height: 1.35;
-        letter-spacing: -0.01em;
-        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
-        word-break: break-word;
-        hyphens: auto;
+        letter-spacing: 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        word-break: normal;
+        hyphens: none;
+        padding: 0 10px;
     }
 }
 
 @media (max-width: 480px) {
     .hero-video-wrapper {
-        height: 320px;
+        height: 260px;
+        width: 100%;
     }
 
     .hero-content h1 {
@@ -266,43 +278,128 @@
     }
 }
 
+.hero-mobile-search-card {
+    display: none;
+}
+
 /* Media Queries */
 @media (max-width: 900px) {
-    .search-inputs-wrapper {
+    .hero-desktop-search {
+        display: none !important;
+    }
+
+    /* ── Mobile Search Card (shown only on mobile) ── */
+    .hero-mobile-search-card {
+        display: flex;
         flex-direction: column;
-        gap: 1rem;
-        padding: 1.5rem 1rem;
-    }
-
-    .dates-container {
-        width: 100%;
-        margin: 0;
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .destination-group {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .date-group {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .search-btn-container {
-        width: 100%;
-    }
-
-    .search-btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .search-bar-container {
+        gap: 12px;
         width: 90%;
-        padding: 0;
-        border-radius: 20px;
+        margin-bottom: 2rem;
+        padding: 16px;
+        background: #f8f8f8;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        z-index: 10;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* slightly elevated */
+    }
+
+    .hero-mobile-pill {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #e2e2e2;
+        border-radius: 12px;
+        padding: 14px 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .hero-mobile-pill-icon {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        color: #333;
+    }
+
+    .hero-mobile-pill-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 0.95rem;
+        color: #222;
+        background: transparent;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hero-mobile-pill-input::placeholder {
+        color: #999;
+    }
+
+    /* Date pill specific */
+    .hero-mobile-date-pill {
+        cursor: pointer;
+        position: relative; /* to position hidden dates */
+    }
+
+    .hero-hidden-date {
+        opacity: 0;
+        position: absolute;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+    }
+
+    .hero-mobile-date-display {
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+        color: #555;
+        font-family: 'Inter', sans-serif;
+        flex: 1;
+    }
+
+    .hero-mobile-date-part {
+        cursor: pointer;
+        user-select: none;
+        color: #555;
+    }
+
+    .hero-mobile-date-part:hover {
+        color: #222;
+    }
+
+    .hero-mobile-date-sep {
+        color: #aaa;
+        font-weight: 400;
+    }
+
+    /* Red full-width search button */
+    .hero-mobile-search-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 15px;
+        background-color: #E2211C;
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.02em;
+        transition: background-color 0.2s, transform 0.15s;
+        box-shadow: 0 4px 14px rgba(226, 33, 28, 0.30);
+    }
+
+    .hero-mobile-search-btn:hover {
+        background-color: #c91b17;
+        transform: translateY(-1px);
+    }
+
+    .hero-mobile-search-btn:active {
+        transform: translateY(0);
     }
 }

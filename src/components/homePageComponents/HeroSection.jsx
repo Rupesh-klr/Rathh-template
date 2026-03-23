@@ -30,12 +30,12 @@ const HeroSection = () => {
                 </video>
                 <div className="hero-overlay"></div>
                 <div className="hero-content text-2xl md:text-4xl lg:text-5xl font-bold text-white text-center">
-                    <h1>Your Journey to<br />Unforgettable Experiences<br />Starts Here</h1>
+                    <h1>Your Journey to <br className="hero-desktop-br" />Unforgettable Experiences <br className="hero-desktop-br" />Starts Here</h1>
                 </div>
             </div>
 
             {/* ── Search Bar ── */}
-            <div className="search-bar-container">
+            <div className="search-bar-container hero-desktop-search">
                 <div className="search-inputs-wrapper">
 
                     <div className="search-input-group destination-group">
@@ -90,6 +90,58 @@ const HeroSection = () => {
                     </div>
 
                 </div>
+            </div>
+
+            {/* ── MOBILE Search Card (shown only on mobile) ── */}
+            <div className="hero-mobile-search-card">
+                {/* Destination pill */}
+                <div className="hero-mobile-pill">
+                    <span className="hero-mobile-pill-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </span>
+                    <input
+                        type="text"
+                        className="hero-mobile-pill-input"
+                        placeholder="Search destinations"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                    />
+                </div>
+
+                {/* Combined date pill */}
+                <div className="hero-mobile-pill hero-mobile-date-pill">
+                    <span className="hero-mobile-pill-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </span>
+                    <input type="date" ref={startDateRef} className="hero-hidden-date" onChange={e => setStartDates(e.target.value)} />
+                    <input type="date" ref={endDateRef} className="hero-hidden-date" onChange={e => setEndDates(e.target.value)} />
+                    <div className="hero-mobile-date-display">
+                        <span onClick={() => handleDateClick(startDateRef)} className="hero-mobile-date-part">
+                            {startDates || 'Start date'}
+                        </span>
+                        <span className="hero-mobile-date-sep">&nbsp;—&nbsp;</span>
+                        <span onClick={() => handleDateClick(endDateRef)} className="hero-mobile-date-part">
+                            {endDates || 'End date'}
+                        </span>
+                    </div>
+                </div>
+
+                {/* Red Search button */}
+                <button className="hero-mobile-search-btn" onClick={showdetails}>
+                    Search
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
             </div>
 
 
