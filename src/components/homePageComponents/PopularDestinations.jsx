@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const destinations = [
     {
@@ -34,38 +34,172 @@ const destinations = [
     {
         id: 6,
         name: 'Banff National Park, Canada',
-        image: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=800&auto=format&fit=crop',
         alt: 'Banff National Park, Canada'
     }
 ];
 
 const PopularDestinations = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [textVisible, setTextVisible] = useState(true);
+
+    const navigate = (direction) => {
+        // Fade out text
+        setTextVisible(false);
+        setTimeout(() => {
+            setCurrentIndex((prev) =>
+                direction === 'next'
+                    ? (prev + 1) % destinations.length
+                    : (prev - 1 + destinations.length) % destinations.length
+            );
+            // Fade text back in after image starts sliding
+            setTimeout(() => setTextVisible(true), 150);
+        }, 180);
+    };
+
     return (
-        <div className="py-16 px-4 bg-white">
-            <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+        <div style={{ padding: '40px 16px', backgroundColor: '#ffffff' }}>
+            <div style={{ maxWidth: '540px', margin: '0 auto', width: '100%' }}>
+
+                {/* Heading */}
+                <h2 style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2.25rem)',
+                    fontWeight: '700',
+                    textAlign: 'center',
+                    marginBottom: '28px',
+                    color: '#111827',
+                }}>
                     Popular Destinations
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {destinations.map((destination) => (
-                        <div
-                            key={destination.id}
-                            className="group cursor-pointer flex flex-col items-center"
-                        >
-                            <div className="relative overflow-hidden rounded-2xl md:w-full md:h-full h-65 w-90 aspect-[4/3] mb-4 shadow-md transition-shadow hover:shadow-xl">
-                                <img
-                                    src={destination.image}
-                                    alt={destination.alt}
-                                    className="w-full h-full object-cover transition-transform duration-900 group-hover:scale-110"
-                                />
-                            </div>
-                            <h3 className="text-xl font-medium text-gray-800 group-hover:text-blue-600 transition-colors">
-                                {destination.name}
+                {/* ── Carousel Shell ─────────────────────────────── */}
+                {/* position:relative lets buttons anchor here, NOT inside the track */}
+                <div style={{ position: 'relative', width: '100%' }}>
+
+                    {/* ── Image Track (overflow hidden = only shows 1 slide) ── */}
+                    <div style={{
+                        width: '100%',
+                        aspectRatio: '4 / 3',
+                        overflow: 'hidden',          /* clips all slides except current */
+                        borderRadius: '20px',
+                        boxShadow: '0 8px 30px rgba(0,0,0,0.18)',
+                        position: 'relative',        /* stacking context for overlay */
+                    }}>
+                        {/* Sliding strip: all images side-by-side, translated by index */}
+                        <div style={{
+                            display: 'flex',
+                            width: '100%',
+                            height: '100%',
+                            transform: `translateX(-${currentIndex * 100}%)`,
+                            transition: 'transform 0.5s ease-in-out',
+                        }}>
+                            {destinations.map((dest) => (
+                                <div
+                                    key={dest.id}
+                                    style={{
+                                        minWidth: '100%',   /* each slide = full container width */
+                                        width: '100%',
+                                        height: '100%',
+                                        flexShrink: 0,
+                                        position: 'relative',
+                                    }}
+                                >
+                                    <img
+                                        src={dest.image}
+                                        alt={dest.alt}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',   /* fills, no awkward crop */
+                                            display: 'block',
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* ── Text Overlay (inside the image, fades in/out) ── */}
+                        <div style={{
+                            position: 'absolute',
+                            inset: 0,
+                            background: 'linear-gradient(to top, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.08) 55%, transparent 100%)',
+                            display: 'flex',
+                            alignItems: 'flex-end',
+                            padding: 'clamp(14px, 4vw, 24px)',
+                            pointerEvents: 'none',  /* don't block button clicks */
+                        }}>
+                            <h3 style={{
+                                margin: 0,
+                                color: '#ffffff',
+                                fontWeight: '700',
+                                fontSize: 'clamp(1.1rem, 4.5vw, 1.75rem)',
+                                lineHeight: 1.2,
+                                textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                                opacity: textVisible ? 1 : 0,
+                                transition: 'opacity 0.35s ease-in-out',
+                            }}>
+                                {destinations[currentIndex].name}
                             </h3>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* ── PREV Button (anchored to shell, never moves) ── */}
+                    <button
+                        onClick={() => navigate('prev')}
+                        aria-label="Previous destination"
+                        style={{
+                            position: 'absolute',
+                            left: '14px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            zIndex: 20,
+                            backgroundColor: '#ffffff',
+                            color: '#1f2937',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '42px',
+                            height: '42px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '20px',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
+                        }}
+                    >
+                        &#8592;
+                    </button>
+
+                    {/* ── NEXT Button (anchored to shell, never moves) ── */}
+                    <button
+                        onClick={() => navigate('next')}
+                        aria-label="Next destination"
+                        style={{
+                            position: 'absolute',
+                            right: '14px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            zIndex: 20,
+                            backgroundColor: '#ffffff',
+                            color: '#1f2937',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '42px',
+                            height: '42px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '20px',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
+                        }}
+                    >
+                        &#8594;
+                    </button>
                 </div>
+
             </div>
         </div>
     );
