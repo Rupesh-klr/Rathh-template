@@ -15,6 +15,7 @@ const DynaPage = () => {
     const [selectedStyles, setSelectedStyles] = useState([]);
     const [sortBy, setSortBy] = useState('popularity');
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+    const [mobileSortOpen, setMobileSortOpen] = useState(false);
 
     const handleSearch = () => {
         console.log('Search:', { searchTerm, startDate, endDate });
@@ -60,11 +61,11 @@ const DynaPage = () => {
 
             {/* Mobile Sort | Filter Bar */}
             <div className="dyna-mobile-bar">
-                <button className="dyna-mobile-bar-btn" onClick={() => handleSortChange(sortBy === 'popularity' ? 'price' : 'popularity')}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="6" y1="12" x2="18" y2="12" />
-                        <line x1="9" y1="18" x2="15" y2="18" />
+                <button className="dyna-mobile-bar-btn" onClick={() => setMobileSortOpen(true)}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                        <line x1="10" y1="18" x2="14" y2="18"></line>
                     </svg>
                     Sort
                 </button>
@@ -100,6 +101,30 @@ const DynaPage = () => {
                                 onClearAll={handleClearAll}
                                 onApplyFilters={handleApplyFilters}
                             />
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Mobile Sort Menu Overlay */}
+            {mobileSortOpen && (
+                <div className="dyna-filter-overlay" onClick={() => setMobileSortOpen(false)}>
+                    <div className="dyna-sort-menu" onClick={(e) => e.stopPropagation()}>
+                        <div className="dyna-sort-option" onClick={() => { handleSortChange('popularity'); setMobileSortOpen(false); }}>
+                            <span>Popularity</span>
+                            <div className={`dyna-sort-radio ${sortBy === 'popularity' ? 'selected' : ''}`}></div>
+                        </div>
+                        <div className="dyna-sort-option" onClick={() => { handleSortChange('low'); setMobileSortOpen(false); }}>
+                            <span>Price: Low to High</span>
+                            <div className={`dyna-sort-radio ${sortBy === 'low' ? 'selected' : ''}`}></div>
+                        </div>
+                        <div className="dyna-sort-option" onClick={() => { handleSortChange('high'); setMobileSortOpen(false); }}>
+                            <span>Price: High to Low</span>
+                            <div className={`dyna-sort-radio ${sortBy === 'high' ? 'selected' : ''}`}></div>
+                        </div>
+                        <div className="dyna-sort-option" onClick={() => { handleSortChange('date'); setMobileSortOpen(false); }}>
+                            <span>Date</span>
+                            <div className={`dyna-sort-radio ${sortBy === 'date' ? 'selected' : ''}`}></div>
                         </div>
                     </div>
                 </div>
