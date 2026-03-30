@@ -262,14 +262,14 @@ const PopularDestinations = () => {
                             margin: 0,
                             fontSize: 'clamp(0.9rem, 3.5vw, 1.05rem)',
                             color: '#374151',
-                            textAlign: 'center',
+                            textAlign: 'right',
                         }}>
                             <span style={{ fontWeight: '400', color: '#6b7280' }}>From </span>
                             <span style={{
                                 textDecoration: 'line-through',
                                 color: '#9ca3af',
                                 fontWeight: '400',
-                                marginRight: '6px',
+                                marginRight: '2px',
                             }}>
                                 USD ${current.originalPrice.toLocaleString()}
                             </span>
