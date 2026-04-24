@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const destinations = [
     {
@@ -102,7 +102,7 @@ const STYLES = `
                 box-shadow  0.32s cubic-bezier(.25,.8,.25,1);
   }
   .pd-card:hover {
-    transform: translateY(-8px) scale(1.025);
+    transform: translateY(-4px) scale(1.025);
     box-shadow: 0 18px 48px rgba(0,0,0,0.18);
   }
 
@@ -191,6 +191,46 @@ const STYLES = `
   .pd-price-label    { color: #9ca3af; }
   .pd-price-original { text-decoration: line-through; color: #9ca3af; }
   .pd-price-final    { font-weight: 700; color: #111827; font-size: 1.05rem; }
+
+  /* ── Desktop scroll wrapper & arrow buttons ── */
+  .pd-desktop-wrap {
+    position: relative;
+  }
+  .pd-scroll-btn {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .pd-scroll-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-60%);
+      z-index: 10;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: #1f2937;
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.20);
+      transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+    }
+    .pd-scroll-btn:hover {
+      background: #f3f4f6;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+      transform: translateY(-60%) scale(1.08);
+    }
+    .pd-scroll-btn:active {
+      transform: translateY(-60%) scale(0.96);
+    }
+    .pd-scroll-btn-left  { left:  0px; }
+    .pd-scroll-btn-right { right: 0px; }
+  }
 `;
 
 let stylesInjected = false;
@@ -230,6 +270,15 @@ const PopularDestinations = () => {
     injectStyles();
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const desktopScrollRef = useRef(null);
+
+    const scrollDesktop = (dir) => {
+        if (!desktopScrollRef.current) return;
+        desktopScrollRef.current.scrollBy({
+            left: dir === 'next' ? 324 : -324,
+            behavior: 'smooth',
+        });
+    };
     const [textVisible, setTextVisible] = useState(true);
 
     const navigate = (direction) => {
@@ -261,12 +310,32 @@ const PopularDestinations = () => {
             </h2>
 
             {/* ══════════════════════════════════════════════════════════
-                DESKTOP — horizontally scrollable card row
+                DESKTOP — horizontally scrollable card row with arrows
             ══════════════════════════════════════════════════════════ */}
-            <div className="pd-desktop-scroll">
-                {destinations.map((dest) => (
-                    <DestinationCard key={dest.id} dest={dest} />
-                ))}
+            <div className="pd-desktop-wrap">
+                {/* Left arrow */}
+                <button
+                    className="pd-scroll-btn pd-scroll-btn-left"
+                    onClick={() => scrollDesktop('prev')}
+                    aria-label="Scroll destinations left"
+                >
+                    &#8592;
+                </button>
+
+                <div className="pd-desktop-scroll" ref={desktopScrollRef}>
+                    {destinations.map((dest) => (
+                        <DestinationCard key={dest.id} dest={dest} />
+                    ))}
+                </div>
+
+                {/* Right arrow */}
+                <button
+                    className="pd-scroll-btn pd-scroll-btn-right"
+                    onClick={() => scrollDesktop('next')}
+                    aria-label="Scroll destinations right"
+                >
+                    &#8594;
+                </button>
             </div>
 
             {/* ══════════════════════════════════════════════════════════
