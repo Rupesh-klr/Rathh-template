@@ -656,6 +656,12 @@ button:focus {
     }
 }
 
+@media (max-width: 384px) {
+    .dyna-cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 /* Tablets Portrait */
 @media (max-width: 768px) {
     .dyna-heading-wrapper {
