@@ -208,17 +208,18 @@ const STYLES = `
       top: 50%;
       transform: translateY(-60%);
       z-index: 10;
-      width: 46px;
-      height: 46px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       border: none;
       background: #ffffff;
       color: #1f2937;
-      font-size: 22px;
+      font-size: 25px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 18px rgba(0,0,0,0.20);
       transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+      margin-left: 10;
     }
     .pd-scroll-btn:hover {
       background: #f3f4f6;
@@ -228,8 +229,8 @@ const STYLES = `
     .pd-scroll-btn:active {
       transform: translateY(-60%) scale(0.96);
     }
-    .pd-scroll-btn-left  { left:  0px; }
-    .pd-scroll-btn-right { right: 0px; }
+    .pd-scroll-btn-left  { left:  4px; }
+    .pd-scroll-btn-right { right: 9px; }
   }
 `;
 
@@ -424,13 +425,14 @@ const PopularDestinations = () => {
                                     transform: 'translateY(-50%)', zIndex: 20,
                                     backgroundColor: '#ffffff', color: '#1f2937',
                                     border: 'none', borderRadius: '50%',
-                                    width: '42px', height: '42px',
+                                    width: '44px', height: '44px',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     fontSize: '20px', fontWeight: '700', cursor: 'pointer',
                                     boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
                                 }}
                             >
                                 &#8592;
+                                {/* 098 */}
                             </button>
 
                             {/* Next */}
@@ -442,9 +444,9 @@ const PopularDestinations = () => {
                                     transform: 'translateY(-50%)', zIndex: 20,
                                     backgroundColor: '#ffffff', color: '#1f2937',
                                     border: 'none', borderRadius: '50%',
-                                    width: '42px', height: '42px',
+                                    width: '45px', height: '45px',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    fontSize: '20px', fontWeight: '700', cursor: 'pointer',
+                                    fontSize: '20px', fontWeight: '900', cursor: 'pointer',
                                     boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
                                 }}
                             >
